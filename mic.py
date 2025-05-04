@@ -3,8 +3,9 @@ import time
 import winsound
 import os
 
-from config import LANGUAGE, WAKE_WORD, MICROPHONE_INDEX
+from config import LANGUAGE, WAKE_WORD, MICROPHONE_INDEX, TIMEOUT
 from utils import is_wake_word
+
 
 def get_microphone_device():
     print("🔍 Ищу подходящий микрофон...")
@@ -20,6 +21,7 @@ def get_microphone_device():
     print("⚠️ Микрофон не найден — попробую использовать дефолтный")
     return None
 
+
 def record_after_wake_word():
     r = sr.Recognizer()
     mic_index = get_microphone_device()
@@ -31,7 +33,7 @@ def record_after_wake_word():
                 print('🔇 Подстраиваюсь под фон...')
                 r.adjust_for_ambient_noise(source, duration=0.5)
                 print("💤 Жду команду...")
-                audio = r.listen(source, timeout=3600*24, phrase_time_limit=10)
+                audio = r.listen(source, timeout=TIMEOUT, phrase_time_limit=10)
                 text = r.recognize_google(audio, language=LANGUAGE).lower()
                 print(f"🗣️ Распознано: {text}")
 

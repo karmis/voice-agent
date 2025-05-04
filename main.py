@@ -1,7 +1,7 @@
 import winsound
 import os
 from config import *
-from llm import generate_with_groq, generate_with_yandex
+from llm import generate_reply
 from mic import record_after_wake_word
 from tts import load_silero_tts, tts
 def main():
@@ -19,14 +19,7 @@ def main():
             winsound.PlaySound("new_chat.wav", winsound.SND_FILENAME)
             continue
 
-        if LLM_PROVIDER == "groq":
-            reply = generate_with_groq(user_phrase, GROQ_API_KEY)
-        elif LLM_PROVIDER == "yandex":
-            reply = generate_with_yandex(user_phrase)
-        else:
-            reply = NOT_UNDERSTOOD
-
-        print("🧠 Qwen говорит:", reply)
+        reply = generate_reply(user_phrase)
 
         tts_file = tts(reply, silero_model, SELECTED_SPEAKER)
         if tts_file and os.path.exists(tts_file):
