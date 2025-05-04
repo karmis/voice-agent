@@ -3,9 +3,11 @@ import os
 from config import *
 from llm import generate_reply
 from mic import record_after_wake_word
-from tts import load_silero_tts, tts
+from tts_yandex import tts
+
+
 def main():
-    silero_model = load_silero_tts()
+    # silero_model = load_bark_tts()
     print("🤖 Голосовой агент запущен!")
 
     while True:
@@ -21,7 +23,7 @@ def main():
 
         reply = generate_reply(user_phrase)
 
-        tts_file = tts(reply, silero_model, SELECTED_SPEAKER)
+        tts_file = tts(reply)
         if tts_file and os.path.exists(tts_file):
             print("🎧 Воспроизводим...")
             winsound.PlaySound(tts_file, winsound.SND_FILENAME)
