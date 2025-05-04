@@ -1,0 +1,10 @@
+speechrecognition
+rapidfuzz
+torch
+torchaudio
+numpy
+scipy
+openai
+requests
+omegaconf
+pyaudio
