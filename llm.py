@@ -7,9 +7,9 @@ from config import SYSTEM_PROMPT, SAMBANOVA_API_KEY, OPENAI_API_KEY
 def generate_reply(user_input):
     # reply = None
 
-    reply = generate_with_qwen(user_input)
+    reply = generate_with_nova(user_input)
     if reply is None:
-        reply = generate_with_nova(user_input)
+        reply = generate_with_qwen(user_input)
 
     if reply is None:
         reply = "Я сломался бро, ничего не могу ответить"

@@ -20,7 +20,7 @@ def tts(text, output_path="output.wav"):
         return None
 
     try:
-        max_length = 500
+        max_length = 510
         if len(text) > max_length:
             text = text[:max_length] + "..."
             print(f"✂️ Текст обрезан до {max_length} символов.")
@@ -33,8 +33,10 @@ def tts(text, output_path="output.wav"):
         model = model_repository.synthesis_model()
 
         # Задайте настройки синтеза.
-        model.voice = 'jane'
+        model.voice = 'anton'
         model.role = 'good'
+        model.unsafe_mode = True
+        model.speed = 1.25
 
         # Синтез речи и создание аудио с результатом.
         result = model.synthesize(text, raw_format=False)

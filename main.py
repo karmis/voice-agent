@@ -16,11 +16,6 @@ def main():
             continue
         print(f"🗣️ Вы сказали: {user_phrase}")
 
-        if user_phrase.lower() == "давай с начала":
-            print("🔄 Новый чат открыт.")
-            winsound.PlaySound("new_chat.wav", winsound.SND_FILENAME)
-            continue
-
         reply = generate_reply(user_phrase)
 
         tts_file = tts(reply)
